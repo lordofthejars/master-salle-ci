@@ -18,7 +18,8 @@ pipeline {
    }
    post {  
       always {  
-         echo 'This will always run'  
+         junit '**/nosetests.xml'
+         step([$class: 'CoberturaPublisher', autoUpdateHealth: false, autoUpdateStability: false, coberturaReportFile: '**/coverage.xml', failUnhealthy: false, failUnstable: false, maxNumberOfBuilds: 0, onlyStable: false, sourceEncoding: 'ASCII', zoomCoverageChart: false])
       }  
       success {  
          echo 'This will run only if successful'  
