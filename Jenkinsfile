@@ -13,7 +13,7 @@ pipeline {
           stage('Package') {
               steps {
                 echo "Building $version"
-                sh script: './mvnw package -DskipTests'
+                sh script: 'mvn package -DskipTests'
               }
           }
      
