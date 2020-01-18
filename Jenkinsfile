@@ -1,11 +1,11 @@
 pipeline {
    agent any
-    
+
        stages {
           stage('Compile & Test') {
              steps {
                     echo 'Hello From Jenkinsfile'
-                    git 'https://github.com/lordofthejars/master-salle-ci.git'
+                    git 'https://github.com/tbanjos/master-salle-ci.git'
                     sh label: '', script: './mvnw compile test'
                     junit 'target/surefire-reports/*.xml'
              }
@@ -16,6 +16,6 @@ pipeline {
                 sh script: './mvnw package -DskipTests'
               }
           }
-     
+
    }
 }
