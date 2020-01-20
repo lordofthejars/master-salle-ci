@@ -11,10 +11,9 @@ pipeline {
       }
       stage('SonarQube analysis') {
          steps{
-         mvn sonar:sonar \
-            -Dsonar.projectKey='java' \
-            -Dsonar.host.url='http://localhost:9000' \
-            -Dsonar.login='494216247f2b6884fc6dc61354124cd1a15824e6'
+         withSonarQubeEnv('sonar-cube') {
+            sh 'mvn clean package sonar:sonar'
+         }
          }
       }
       stage('Package') {
