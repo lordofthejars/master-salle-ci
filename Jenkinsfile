@@ -9,7 +9,7 @@ pipeline {
       }
       stage("Cleaning Package and Compile") {
          steps {
-            echo “Cleaning Package”
+            echo "Cleaning Package"
             sh script: "./mvnw clean package -DskipTests"
             echo "Compile the package"
             sh label:"", script: "./mvnw compile"
@@ -29,7 +29,7 @@ pipeline {
       }
       stage("Package") {
          steps {
-            echo “Package”
+            echo "Package"
             sh script: "./mvnw package -DskipTests"
          }
       }
@@ -52,7 +52,7 @@ pipeline {
      }
      stage("Produccion") {
         input {
-            message “Pasamos a producción?”
+            message "Pasamos a producción?"
         }
         steps {
            echo "Production"
