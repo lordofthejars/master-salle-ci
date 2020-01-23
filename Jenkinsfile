@@ -10,27 +10,27 @@ pipeline {
       stage("Cleaning Package and Compile") {
          steps {
             echo "Cleaning Package"
-            sh script: "./mvnw clean package -DskipTests"
+            sh script: "mvn clean package -DskipTests"
             echo "Compile the package"
-            sh label:"", script: "./mvnw compile"
+            sh label:"", script: "mvn compile"
          }
       }
       stage ("Tests") {
           steps {
-            sh script: "./mvnw test"
+            sh script: "mvn test"
             junit "target/surefire-reports/*.xml"
           }
       }
       stage("Acceptance Test"){
          steps{
             echo "Executing Acceptance Test"
-            sh script: "./mvnw verify"
+            sh script: "mvn verify"
          }
       }
       stage("Package") {
          steps {
             echo "Package"
-            sh script: "./mvnw package -DskipTests"
+            sh script: "mvn package -DskipTests"
          }
       }
      stage("Build Docker Image") {
@@ -43,10 +43,10 @@ pipeline {
         steps {
             sh "docker run --name maven -i --rm -p 8081:8080 -d quarkus/code-with-quarkus-jvm"
             //echo "Executing Tests"
-            //sh script: "./mvnw test"
+            //sh script: "mvn test"
             //junit "target/surefire-reports/*.xml"
             //echo "Executing Acceptance Tests"
-            //sh script: "./mvnw -Dtest=ExampleResourceIT test"
+            //sh script: "mvn -Dtest=ExampleResourceIT test"
             //junit "target/surefire-reports/*.xml"
         }
      }
