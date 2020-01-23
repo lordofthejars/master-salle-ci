@@ -62,7 +62,6 @@ pipeline {
         }
      }
    }
-   }
    post {  
       always {  
          junit "**/nosetests.xml"
